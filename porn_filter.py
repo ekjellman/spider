@@ -54,6 +54,8 @@ class PornFilter(object):
     """Get around num_tokens of the most important tokens in token_probs."""
     # Important is defined by distance from .5. i.e. a probability of .15 is
     # more important than a probability of .4
+    if len(token_probs) == 0:
+      return []
     tokens = token_probs[:num_tokens]
     border = interest_comparator(tokens[-1])
     for i in xrange(num_tokens, len(token_probs)):
