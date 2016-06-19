@@ -1,0 +1,5 @@
+#!/bin/bash
+python spider.py
+while [ $? -eq 0 ]; do
+  python spider.py
+done
