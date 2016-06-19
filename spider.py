@@ -277,13 +277,12 @@ class Spider(object):
         extracted_text = self.extract_text(soup)
         if self.check_text(text, extracted_text):
           keywords = self.extract_keywords(soup)
-          if self.valid_keywords(keywords):
-            self.record_text(next_url, extracted_text, keywords)
-            new_links = self.get_links(next_url, text)
-            for link in new_links:
-              if link not in self.visited and self.valid_link(link):
-                self.links_file.write("Add:%s\n" % link)
-                self.url_queue.append(link)
+          self.record_text(next_url, extracted_text, keywords)
+          new_links = self.get_links(next_url, text)
+          for link in new_links:
+            if link not in self.visited and self.valid_link(link):
+              self.links_file.write("Add:%s\n" % link)
+              self.url_queue.append(link)
       self.cleanup()
       time.sleep(1)
 
